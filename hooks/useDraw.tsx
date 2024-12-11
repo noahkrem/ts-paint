@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
+import { Draw } from '../types/typing.d.tsx'
 
-export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw)) => {
+export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw) => void) => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
