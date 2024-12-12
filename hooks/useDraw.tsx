@@ -13,7 +13,7 @@ export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw) => void) 
 
         const handler = (e: MouseEvent  ) => {
 
-            // if (!mouseDown) return  // If mouse is not pressed don't draw anything
+            if (!mouseDown) return  // If mouse is not pressed don't draw anything
 
             const currentPoint = computePointInCanvas(e)
             console.log(currentPoint?.x, currentPoint?.y)
@@ -42,12 +42,22 @@ export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw) => void) 
             return { x, y }
         }
 
+        const mouseUpHandler = () => {
+            setMouseDown(false)
+            prevPoint.current = null
+        }
+
         // Add event listeners
         canvasRef.current?.addEventListener('mousemove', handler)
+        window.addEventListener('mouseup', mouseUpHandler)  // Must attach this to the window, not the canvas, or else 
+                                                            //  our program won't know if the mouse was released outside of the canvas
 
         // Remove event listeners
-        return () => canvasRef.current?.addEventListener('mousemove', handler)
-    }, [])
+        return () => {
+            canvasRef.current?.removeEventListener('mousemove', handler)
+            window.removeEventListener('mouseup', mouseUpHandler)
+        }
+    }, [onDraw])    // Must inlude onDraw in the dependency array since we are not defining it within the useEffect function
 
     return  { canvasRef, onMouseDown }
 }

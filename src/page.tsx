@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import { useDraw } from '../hooks/useDraw'
+import { ChromePicker } from 'react-color'
+
 import { Draw } from '../types/typing.d.tsx'
 
 interface pageProps {}
@@ -32,6 +34,7 @@ const page: FC<pageProps> = ({}) => {
   }
 
   return <div className='w-screen h-screen bg-white flex justify-center items-center'>
+
     <canvas onMouseDown={onMouseDown} ref={canvasRef} width={750} height={750} className='border border-black rounded-md'/>
   </div>
 }
