@@ -6,4 +6,4 @@ export type Draw = {
     prevPoint: Point | null
 }
 
-type Point = { x: number; y: number }
+export type Point = { x: number; y: number }

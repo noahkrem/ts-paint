@@ -6,7 +6,7 @@ interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
 
-  const {canvasRef} = useDraw(drawLine)
+  const {canvasRef, onMouseDown} = useDraw(drawLine)
 
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: currX, y: currY } = currentPoint
@@ -25,11 +25,14 @@ const page: FC<pageProps> = ({}) => {
     ctx.lineTo(currX, currY)
     ctx.stroke()  // This method draws the current path
     
-
+    ctx.fillStyle = lineColor
+    ctx.beginPath()
+    ctx.arc(startPoint.x, startPoint.y, 2, 0, 2 * Math.PI)
+    ctx.fill()
   }
 
   return <div className='w-screen h-screen bg-white flex justify-center items-center'>
-    <canvas ref={canvasRef} width={750} height={750} className='border border-black rounded-md'/>
+    <canvas onMouseDown={onMouseDown} ref={canvasRef} width={750} height={750} className='border border-black rounded-md'/>
   </div>
 }
 
