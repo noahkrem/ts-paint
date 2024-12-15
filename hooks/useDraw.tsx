@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Draw, Point } from '../types/typing.d.tsx'
 
-export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw) => void) => {
+export const useDraw = (onDraw: ({ctx, currentPoint, prevPoint}: Draw) => void) => { 
 
     const [mouseDown, setMouseDown] = useState(false)  // Only draw when the mouse is pressed down
     const canvasRef = useRef<HTMLCanvasElement>(null)
