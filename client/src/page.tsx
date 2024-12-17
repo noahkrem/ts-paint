@@ -1,11 +1,13 @@
-import { FC, useState } from 'react'
+// @ts-expect-error import React is recognized as declared but never used by TypeScript
+import React, { FC, useState } from 'react'
 import { useDraw } from '../hooks/useDraw'
 import { ChromePicker } from 'react-color'
 
 import { Draw } from '../types/typing.d.tsx'
 
-interface pageProps {}
+type pageProps = object;
 
+// eslint-disable-next-line no-empty-pattern
 const page: FC<pageProps> = ({}) => {
   
   const [color, setColor] = useState<string>('#000')
@@ -20,7 +22,8 @@ const page: FC<pageProps> = ({}) => {
     //  This is because if we simply draw at the current point, there will be too much
     //  space between each point when we move the mouse very fast and our drawing will
     //  appear messy.
-    let startPoint = prevPoint ?? currentPoint  // If there is no previous point, use the current point as the start point
+    const startPoint = prevPoint ?? currentPoint  // If there is no previous point, use the current point as the start point
+                                                  // Since startPoint never changes within the function, we can declare it as const
     ctx.beginPath()
     ctx.lineWidth = lineWidth
     ctx.strokeStyle = lineColor
