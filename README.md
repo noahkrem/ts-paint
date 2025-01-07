@@ -1,5 +1,10 @@
 # Installs
 
+## Client
+
+### npm i socket.io-client
+Client-side library for socket.io which initializes the client.
+
 ## Server
 
 ### npm i socket.io

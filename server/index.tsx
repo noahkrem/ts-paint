@@ -25,3 +25,7 @@ io.on('connection', (socket) => {   // Whenever a WebSocket (or Client) connects
         socket.broadcast.emit('draw-line', { prevPoint, currentPoint, color })  // Emit the draw-line instance to all other clients (but not the client who drew the line)
     })  
 })   
+
+server.listen(3001, () => {
+    console.log('**Server listening on port 3001**')
+})

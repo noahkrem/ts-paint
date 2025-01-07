@@ -1,6 +1,6 @@
-//type DrawLineProps = Draw & {
-
-//}
+type DrawLineProps = Draw & {
+    color: string
+}
 
 export const drawLine = ({ prevPoint, currentPoint, ctx, color }: DrawLineProps) => {   // Props are read-only inputs passed to a React component
     const { x: currX, y: currY } = currentPoint

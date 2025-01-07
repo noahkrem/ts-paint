@@ -2,8 +2,12 @@
 import React, { FC, useState } from 'react'
 import { useDraw } from '../hooks/useDraw'
 import { ChromePicker } from 'react-color'
+import { io } from "socket.io-client"
 
 import { Draw } from '../types/typing.d.tsx'
+
+// Hosted on port 3001
+const socket = io('http://localhost:3001')
 
 type pageProps = object;
 
@@ -13,29 +17,11 @@ const page: FC<pageProps> = ({}) => {
   const [color, setColor] = useState<string>('#000')
   const {canvasRef, onMouseDown, clear} = useDraw(drawLine)
 
-  function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
-    const { x: currX, y: currY } = currentPoint
-    const lineColor = color // Color should be the same as the state we set before 
-    const lineWidth = 5
+  function drawLine({ prevPoint, currentPoint, ctx }: Draw) {}
 
-    // We want to draw a line between the current point and the previous point.
-    //  This is because if we simply draw at the current point, there will be too much
-    //  space between each point when we move the mouse very fast and our drawing will
-    //  appear messy.
-    const startPoint = prevPoint ?? currentPoint  // If there is no previous point, use the current point as the start point
-                                                  // Since startPoint never changes within the function, we can declare it as const
-    ctx.beginPath()
-    ctx.lineWidth = lineWidth
-    ctx.strokeStyle = lineColor
-    ctx.moveTo(startPoint.x, startPoint.y)
-    ctx.lineTo(currX, currY)
-    ctx.stroke()  // This method draws the current path
-    
-    ctx.fillStyle = lineColor
-    ctx.beginPath()
-    ctx.arc(startPoint.x, startPoint.y, 2, 0, 2 * Math.PI)
-    ctx.fill()
-  }
+  // Two main purposes:
+  // 1. Emit to the server
+  function createLine({ prevPoint, currentPoint, ctx }: Draw) {}
 
   return ( 
     <div className='w-screen h-screen bg-white flex justify-center items-center'>
