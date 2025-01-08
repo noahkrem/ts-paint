@@ -32,7 +32,9 @@ const page: FC<pageProps> = ({}) => {
       if (!ctx) return  // If ctx does not exist, do not draw
       drawLine({ prevPoint, currentPoint, ctx, color })
     })
-  }, [])
+
+    socket.on('clear', clear) // If 'clear' is received, clear the page
+  }, [canvasRef])
 
   // Two main purposes:
   // 1. Emit to the server
@@ -46,7 +48,7 @@ const page: FC<pageProps> = ({}) => {
     <div className='w-screen h-screen bg-white flex justify-center items-center'>
       <div className='flex flex-col gap-10 pr-10'>
         <ChromePicker color={color} onChange={(e) => setColor(e.hex)}/>
-        <button type='button' className='p-2 rounded-md border border-black' onClick={clear}>
+        <button type='button' className='p-2 rounded-md border border-black' onClick={() => socket.emit('clear')}>
           Clear canvas
         </button>
       </div>

@@ -24,7 +24,9 @@ io.on('connection', (socket) => {   // Whenever a WebSocket (or Client) connects
     console.log("**Connected!!**")
     socket.on('draw-line', ({ prevPoint, currentPoint, color }: DrawLine) => {  // draw-line is the event we are going to fire from the client
         socket.broadcast.emit('draw-line', { prevPoint, currentPoint, color })  // Emit the draw-line instance to all other clients (but not the client who drew the line)
-    })  
+    })
+    
+    socket.on('clear', () => io.emit('clear'))  // If 'clear' is pressed by any client, emit to all clients including the one who presses it
 })   
 
 server.listen(3001, () => {
