@@ -1,3 +1,5 @@
+import { Draw } from '../types/typing.d.tsx'
+
 type DrawLineProps = Draw & {
     color: string
 }
