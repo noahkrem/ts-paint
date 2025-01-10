@@ -1,7 +1,7 @@
 import { Server } from 'socket.io'
+import express from 'express'
+import http from 'http'
 
-const express = require('express')
-const http = require('http')
 const app = express()
 const server = http.createServer(app)
 
@@ -21,7 +21,17 @@ type DrawLine = {
 }
 
 io.on('connection', (socket) => {   // Whenever a WebSocket (or Client) connects...
+    
     console.log("**Connected!!**")
+
+    socket.on('client-ready', () => {
+        socket.broadcast.emit('get-canvas-state')   // Send 'get-canvas-state' to all other client instances
+    })
+
+    socket.on('canvas-state', (state: string) => {
+        socket.broadcast.emit('canvas-state-from-server', state)    // Emit the state to all other clients
+    })
+
     socket.on('draw-line', ({ prevPoint, currentPoint, color }: DrawLine) => {  // draw-line is the event we are going to fire from the client
         socket.broadcast.emit('draw-line', { prevPoint, currentPoint, color })  // Emit the draw-line instance to all other clients (but not the client who drew the line)
     })

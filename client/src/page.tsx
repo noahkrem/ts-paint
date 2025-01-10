@@ -28,12 +28,42 @@ const page: FC<pageProps> = ({}) => {
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d')
 
+    socket.emit('client-ready')
+
+    socket.on('get-canvas-state', () => {
+      if (!canvasRef.current?.toDataURL()) return  // If there is no canvas data to get, do nothing
+      console.log('**Sending canvas state**')
+
+      // Essentially all of the data in the canvas is stored into a very long string that we can use to draw on a new canvas
+      socket.emit('canvas-state', canvasRef.current.toDataURL())
+
+    })
+
+    socket.on('canvas-state-from-server', (state: string) => {
+      console.log(state)
+      console.log('**Received state from server**')
+      const img = new Image()
+      img.src = state
+      img.onload = () => {
+        ctx?.drawImage(img, 0, 0)
+      }
+      console.log('**Image created**')
+    })
+
     socket.on('draw-line', ({ prevPoint, currentPoint, color }: drawLineProps) => {
       if (!ctx) return  // If ctx does not exist, do not draw
       drawLine({ prevPoint, currentPoint, ctx, color })
     })
 
     socket.on('clear', clear) // If 'clear' is received, clear the page
+
+    // We must turn sockets off after turning them on
+    return () => {
+      socket.off('get-canvas-state')
+      socket.off('canvas-state-from-server')
+      socket.off('draw-line')
+      socket.off('clear')
+    }
   }, [canvasRef])
 
   // Two main purposes:
