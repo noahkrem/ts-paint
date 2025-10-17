@@ -4,8 +4,7 @@ A modern, web-based collaborative drawing application built with TypeScript and 
 
 This project was inspired by a tutorial from @joshtriedcoding on YouTube (link: https://youtu.be/Dib5TYHHfgA).
 
-![Application Screenshot](screenshots/app-overview.png)
-*(Insert a screenshot of your application showing the main interface)*
+![Application Screenshot](screenshots/ts-paint_main_interface.png)
 
 ## 🚀 Features
 
@@ -36,8 +35,7 @@ This project was inspired by a tutorial from @joshtriedcoding on YouTube (link: 
 
 The application follows a client-server architecture:
 
-![Architecture Diagram](screenshots/architecture.png)
-*(Insert an architecture diagram showing the flow of data between components)*
+![Architecture Diagram](screenshots/client-server_model.png)
 
 ### Key Components
 
@@ -67,7 +65,7 @@ The application follows a client-server architecture:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ts-paint.git
+git clone https://github.com/noahkrem/ts-paint.git
 cd ts-paint
 ```
 
@@ -96,8 +94,7 @@ npm run client
 
 ## 🎨 Usage
 
-![Usage Demo](screenshots/usage-demo.gif)
-*(Insert a GIF demonstrating the basic usage of your application)*
+![Usage Demo](screenshots/ts-paint_demo.gif)
 
 1. **Drawing:**
    - Click and drag on the canvas to draw
@@ -154,16 +151,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📸 Screenshots
 
 ### Main Interface
-![Main Interface](screenshots/main-interface.png)
-*(Insert a screenshot of the main interface)*
+![Main Interface](screenshots/ts-paint_main_interface.png)
 
 ### Color Selection
-![Color Selection](screenshots/color-selection.png)
-*(Insert a screenshot of the color picker in action)*
+![Color Selection](screenshots/ts-paint_color_picker.png)
 
 ### Collaborative Drawing
-![Collaborative Drawing](screenshots/collaborative-drawing.png)
-*(Insert a screenshot of multiple users drawing together)*
+![Collaborative Drawing](screenshots/ts-paint_multiplayer_demo.gif)
 
 <!-- To be added when available
 ## 🔗 Links
@@ -181,21 +175,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - The open-source community for various tools and libraries
 
 ---
-
-# Installs
-
-## Client
-
-### npm i socket.io-client
-Client-side library for socket.io which initializes the client.
-
-## Server
-
-### npm i socket.io
-Bidirectional, low-latency, and event-based communication between a client and a server. Can be established with HTTP long-polling, WebSocket, or WebTransport.
-
-### npm i express nodemon ts-node
-Keep the server running by automatically restarting the node application when file changes in the directory are detected.
-
-### npm i --save-dev @types/node
-Type definitions for node.
