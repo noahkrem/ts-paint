@@ -35,7 +35,7 @@ This project was inspired by a tutorial from @joshtriedcoding on YouTube (link: 
 
 The application follows a client-server architecture:
 
-![Architecture Diagram](screenshots/client-server_model.png)
+![Architecture Diagram](screenshots/client-server-architecture.png)
 
 ### Key Components
 
@@ -94,6 +94,7 @@ npm run client
 
 ## 🎨 Usage
 
+Click on the GIF below to see a demo of the application in action:
 ![Usage Demo](screenshots/ts-paint_demo.gif)
 
 1. **Drawing:**
@@ -157,6 +158,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ![Color Selection](screenshots/ts-paint_color_picker.png)
 
 ### Collaborative Drawing
+
+Click on the GIF below to see collaborative drawing in action:
 ![Collaborative Drawing](screenshots/ts-paint_multiplayer_demo.gif)
 
 <!-- To be added when available
